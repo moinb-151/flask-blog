@@ -15,3 +15,9 @@ $(document).ready( function() {
         $(this).addClass("active-filter").siblings().removeClass("active-filter");
     })
 });
+
+let header = document.querySelectorAll('header')
+
+window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow', window.scrollY > 0);
+})
