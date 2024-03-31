@@ -4,23 +4,51 @@
     <link rel="stylesheet" href= "{{ url_for('static', filename='css/auth.css') }}">
 {% endblock %}
 {% block body %}
+    <div class="errors">
+        {% if form.name.errors%}
+            {% for error in form.name.errors%}
+                <p> {{error}} </p>
+            {% endfor %}
+        {% endif %}
+        {% if form.email.errors%}
+            {% for error in form.email.errors%}
+                <p> {{error}} </p>
+            {% endfor %}
+        {% endif %}
+        {% if form.password.errors%}
+            {% for error in form.password.errors%}
+                <p> {{error}} </p>
+            {% endfor %}
+        {% endif %}
+        {% if form.confirm_password.errors%}
+            {% for error in form.confirm_password.errors%}
+                <p> {{error}} </p>
+            {% endfor %}
+        {% endif %}
+    </div>
     <div class="wrapper">
         <h2>Registration</h2>
-        <form action="#">
+        <form action="#" method="post">
+            {{ form.hidden_tag()}}
             <div class="input-box">
-                <input type="text" placeholder="Enter your name" required>
+                <!-- <input type="text" placeholder="Enter your name" required> -->
+                {{ form.name()}}
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Enter your email" required>
+                <!-- <input type="text" placeholder="Enter your email" required> -->
+                {{ form.email()}}
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Create password" required>
+                <!-- <input type="password" placeholder="Create password" required> -->
+                {{ form.password()}}
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Confirm password" required>
+                <!-- <input type="password" placeholder="Confirm password" required> -->
+                {{ form.confirm_password()}}
             </div>
             <div class="input-box button">
-                <input type="Submit" value="Register Now">
+                <!-- <input type="Submit" value="Register Now"> -->
+                {{ form.submit()}}
             </div>
             <div class="text">
                 <h3>Already have an account? <a href="{{ url_for('login') }}">Login now</a></h3>
