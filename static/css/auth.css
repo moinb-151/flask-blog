@@ -9,6 +9,7 @@
 body{
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #fd8e44ef;
@@ -93,4 +94,11 @@ form .text h3 a{
 }
 form .text h3 a:hover{
   text-decoration: underline;
+}
+
+.errors {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
 }
