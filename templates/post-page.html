@@ -1,6 +1,6 @@
 {% extends "base.html"%}
 {% block head %}
-    <title>Post Page</title>
+    <title>{{ article.title}}</title>
     <link rel="stylesheet" href= "{{ url_for('static', filename='css/main.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}
@@ -11,25 +11,35 @@
         <div class="nav container">
         <!-- Logo -->
             <a href="" class="logo">Put<span>forth</span></a>
-            <!-- Login Btn -->
-            <a href="" class="login">Login</a>
+            <!-- Profile Dropdown -->
+            {% if is_logged_in%}
+                <div class="profile-dropdown">
+                    <img src="{{ url_for('static',filename='profile_pics/' + current_user.profile_image)}}" alt="" class="profile-img" onclick="toggleDropdown()">
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="{{ url_for('dashboard')}}">Profile</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </div>
+                </div>
+            {% else%}
+                <a href="{{ url_for('login') }}" class="login">Login</a>
+            {% endif%}
         </div>
     </header>
     <!-- Post Content  -->
     <section class="post-header">
         <div class="header-content post-container">
             <!-- Back to Home  -->
-            <a href="" class="back-home">Back To Home</a>
+            <a href="{{ url_for('home')}}" class="back-home">Back To Home</a>
             <!-- Title -->
-            <h1 class="header-title">How To Create Best UX Design With Adobe XD</h1>
+            <h1 class="header-title">{{ article.title}}</h1>
             <!-- Post image  -->
-            <img src="{{url_for('static', filename='img/post-1.jpg')}}" alt="" class="header-img">
+            <img src="{{ url_for('static',filename='article_pics/' + article.image) }}" alt="" class="header-img">
         </div>
     </section>
     <!-- Posts -->
     <section class="post-content post-container">
-        <h2 class="sub-heading">Create Best UI Design</h2>
-        <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam pariatur sapiente necessitatibus, totam assumenda nisi expedita cupiditate consequuntur earum facilis sunt sint omnis, quia laudantium maiores beatae placeat distinctio ipsum a fugit accusamus quod molestias autem! Dolor explicabo distinctio numquam fugit. Quibusdam illum corporis nulla?</p>
+        <h2 class="sub-heading">{{article.subtitle}}</h2>
+        <p class="post-text">{{article.content}}</p>
     </section>
     <!-- Share  -->
     <div class="share post-container">
@@ -57,3 +67,5 @@
     <!-- Link to JS-->
     <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 {% endblock %}
+
+<!-- This the blogpost page -->

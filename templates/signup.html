@@ -15,6 +15,11 @@
                 <p> {{error}} </p>
             {% endfor %}
         {% endif %}
+        {% if form.profile_image.errors%}
+            {% for error in form.profile_image.errors%}
+                <p> {{error}} </p>
+            {% endfor %}
+        {% endif %}
         {% if form.password.errors%}
             {% for error in form.password.errors%}
                 <p> {{error}} </p>
@@ -28,7 +33,7 @@
     </div>
     <div class="wrapper">
         <h2>Registration</h2>
-        <form action="#" method="post">
+        <form action="#" method="post" enctype="multipart/form-data">
             {{ form.hidden_tag()}}
             <div class="input-box">
                 <!-- <input type="text" placeholder="Enter your name" required> -->
@@ -37,6 +42,10 @@
             <div class="input-box">
                 <!-- <input type="text" placeholder="Enter your email" required> -->
                 {{ form.email()}}
+            </div>
+            <div class="input-box">
+                <!-- <input type="text" placeholder="Enter your email" required> -->
+                {{ form.profile_image()}}
             </div>
             <div class="input-box">
                 <!-- <input type="password" placeholder="Create password" required> -->

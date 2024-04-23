@@ -11,8 +11,19 @@
         <div class="nav container">
         <!-- Logo -->
             <a href="" class="logo">Put<span>forth</span></a>
+            <!-- Profile Dropdown -->
+            {% if is_logged_in%}
+                <div class="profile-dropdown">
+                    <img src="{{ url_for('static',filename='profile_pics/' + current_user.profile_image)}}" alt="" class="profile-img" onclick="toggleDropdown()">
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="{{ url_for('dashboard')}}">Profile</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </div>
+                </div>
             <!-- Login Btn -->
-            <a href="{{ url_for('login') }}" class="login">Login</a>
+            {% else%}
+                <a href="{{ url_for('login') }}" class="login">Login</a>
+            {% endif%}
         </div>
     </header>
     <!-- Home -->
@@ -32,50 +43,52 @@
     <!-- Posts -->
     <section class="post container">
         <!-- Post Box 1 -->
-        <div class="post-box mobile">
-            <img src="{{ url_for('static', filename='img/post-1.jpg')}}" alt="" class="post-img">
-            <h2 class="category">Mobile</h2>
-            <a href="{{ url_for('blog')}}" class="post-title">
-                How to create best UX Design with Adobe XD
-            </a>
-            <span class="post-date">12 Feb , 2024</span>
-            <p class="post-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellat cumque reprehenderit magni dolor omnis, quae dolore. Deserunt, quidem fugit quaerat fugiat, nisi tempore ducimus quasi, commodi non suscipit ex.</p>
-            <!-- Profile -->
-            <div class="profile">
-                <img src="{{ url_for('static', filename='img/profile-1.jpg')}}" alt="" class="profile-img">
-                <span class="profile-name">Sheila White</span>
+        {% for post in posts%}
+            <div class="post-box {{post.category}}">
+                <img src="{{ url_for('static',filename='article_pics/' + post.image) }}" alt="" class="post-img">
+                <h2 class="category">{{ post.category}}</h2>
+                <a href="{{ url_for('post', post_id=post.id)}}" class="post-title">
+                    {{ post.title}}
+                </a>
+                <span class="post-date">12 Feb , 2024</span>
+                <p class="post-description">{{ post.content}}</p>
+                <!-- Profile -->
+                <div class="profile">
+                    <img src="{{url_for('static', filename='profile_pics/' + post.author.profile_image)}}" alt="" class="profile-img">
+                    <span class="profile-name">{{post.author.name}}</span>
+                </div>
             </div>
-        </div>
+        {% endfor%}
         <!-- Post Box 2 -->
-        <div class="post-box tech">
+        <!-- <div class="post-box tech">
             <img src="{{ url_for('static', filename='img/post-2.jpg')}}" alt="" class="post-img">
             <h2 class="category">Tech</h2>
             <a href="#" class="post-title">
                 How to create best UX Design with Adobe XD
             </a>
             <span class="post-date">12 Feb , 2024</span>
-            <p class="post-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellat cumque reprehenderit magni dolor omnis, quae dolore. Deserunt, quidem fugit quaerat fugiat, nisi tempore ducimus quasi, commodi non suscipit ex.</p>
+            <p class="post-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellat cumque reprehenderit magni dolor omnis, quae dolore. Deserunt, quidem fugit quaerat fugiat, nisi tempore ducimus quasi, commodi non suscipit ex.</p> -->
             <!-- Profile -->
-            <div class="profile">
+            <!-- <div class="profile">
                 <img src="{{ url_for('static', filename='img/profile-2.jpg')}}" alt="" class="profile-img">
                 <span class="profile-name">Sheila White</span>
             </div>
-        </div>
+        </div> -->
         <!-- Post Box 3 -->
-        <div class="post-box design">
+        <!-- <div class="post-box design">
             <img src="{{ url_for('static', filename='img/post-3.jpg')}}" alt="" class="post-img">
             <h2 class="category">Desisgn</h2>
             <a href="#" class="post-title">
                 How to create best UX Design with Adobe XD
             </a>
             <span class="post-date">12 Feb , 2024</span>
-            <p class="post-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellat cumque reprehenderit magni dolor omnis, quae dolore. Deserunt, quidem fugit quaerat fugiat, nisi tempore ducimus quasi, commodi non suscipit ex.</p>
+            <p class="post-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum repellat cumque reprehenderit magni dolor omnis, quae dolore. Deserunt, quidem fugit quaerat fugiat, nisi tempore ducimus quasi, commodi non suscipit ex.</p> -->
             <!-- Profile -->
-            <div class="profile">
+            <!-- <div class="profile">
                 <img src="{{ url_for('static', filename='img/profile-3.jpg')}}" alt="" class="profile-img">
                 <span class="profile-name">Sheila White</span>
             </div>
-        </div>
+        </div> -->
     </section>
     <!-- Footer -->
     <div class="footer container">
@@ -92,3 +105,5 @@
     <!-- Link to JS-->
     <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 {% endblock %}
+
+<!-- This is my Homepage -->
