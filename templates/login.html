@@ -5,13 +5,13 @@
 {% endblock %}
 {% block body %}
     <div class="errors">
-        {% if form.email.errors%}
-            {% for error in form.email.errors%}
+        {% if form.email.errors %}
+            {% for error in form.email.errors %}
                 <p> {{error}} </p>
             {% endfor %}
         {% endif %}
-        {% if form.password.errors%}
-            {% for error in form.password.errors%}
+        {% if form.password.errors %}
+            {% for error in form.password.errors %}
                 <p> {{error}} </p>
             {% endfor %}
         {% endif %}
@@ -19,18 +19,18 @@
     <div class="wrapper">
         <h2>Login</h2>
         <form action="#" method="post">
-            {{ form.hidden_tag()}}
+            {{ form.hidden_tag() }}
             <div class="input-box">
                 <!-- <input type="text" placeholder="Enter your email" required> -->
-                {{ form.email()}}
+                {{ form.email() }}
             </div>
             <div class="input-box">
                 <!-- <input type="password" placeholder="Enter your password" required> -->
-                {{ form.password()}}
+                {{ form.password() }}
             </div>
             <div class="input-box button">
                 <!-- <input type="Submit" value="Register Now"> -->
-                {{ form.submit()}}
+                {{ form.submit() }}
             </div>
             <div class="text">
                 <h3>Don't have an account? <a href="{{ url_for('signup') }}">Signup now</a></h3>
