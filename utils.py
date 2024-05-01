@@ -12,7 +12,7 @@ def save_profile_image(form_picture):
         current_app.root_path, "static/profile_pics", picture_fn
     )
 
-    output_size = (125, 125)
+    output_size = (1920, 1080)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
@@ -28,7 +28,7 @@ def save_article_image(form_picture):
         current_app.root_path, "static/article_pics", picture_fn
     )
 
-    output_size = (125, 125)
+    output_size = (1920, 1080)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
